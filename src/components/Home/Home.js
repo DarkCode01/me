@@ -9,7 +9,8 @@ export const Home = () => (
       alt="logo"
     />
     <p className="typing-effect">
-      José Miguel Segura Polanco &#8287;
+      José M. Segura Polanco
+      <br />
       <a
         className="app-link"
         href="https://github.com/darkcode01"
