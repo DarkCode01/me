@@ -6,7 +6,7 @@ export const Terminal = () => {
   const [back, setBack] = useState(1);
 
   return (
-    <div className="terminal-window">
+    <div className="terminal-window" style={{ whiteSpace: 'pre-wrap' }}>
       <span className="terminal-prompt">
         { history.map(({ command, data }) => (
           <span key={ command }>
