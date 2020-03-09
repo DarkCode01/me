@@ -1,0 +1,61 @@
+.app-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-align: center;
+}
+
+.app-link {
+   color: rgb(67, 185, 61);
+   text-decoration: none;
+}
+
+.open-terminal {
+	background: rgb(67, 185, 61);
+	border-radius: 7px;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 28px;
+	padding: 15px 30px;
+  text-decoration:none;
+  border: 0px;
+}
+
+
+/* To animate typing effect */
+.typing-effect {
+  letter-spacing: .15em;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3.5s steps(30, end);
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Terminal styles */
+.terminal-window {
+  width: 50%;
+  height: 50%;
+  padding: 5px;
+}
+
+.terminal-prompt {
+  color: rgb(67, 185, 61);
+}
+
+.terminal-prompt input {
+  border: 0px;
+  color: rgb(67, 185, 61);
+  background-color: #000000;
+  font-weight: bold;
+  font-size: 110%;
+}
