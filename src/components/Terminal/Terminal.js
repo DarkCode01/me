@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { process } from '../../utils/helpers-functions';
 
 export const Terminal = () => {
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([
+    process('welcome')
+  ]);
   const [back, setBack] = useState(0);
 
   return (
@@ -35,7 +37,7 @@ export const Terminal = () => {
             }
 
             if (event.keyCode === 13) {
-              result = process(value, history);
+              result = process(value);
               event.target.value = "";
 
               if (result.command === 'clear') return setHistory([]);

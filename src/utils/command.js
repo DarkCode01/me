@@ -17,16 +17,25 @@ export const executedCommand = ({ command, params, options }) => {
   }
 }
 
+export const welcomeCommand = () => {
+  return `
+  Welcome to my personal website :D
+
+  run command (help) to moore information, enjoy it!
+ `
+}
+
 export const helpCommand = () => {
   return `
   Available commands:
 
-  Commands:
-    me: To display info of darkcoder.
-    open: To open url and contact web pages.
-    linkedin: To print url of linkedin.
-    github: To print url of github.
-    help: To diaply all available commands.
+  Commands:         Descrioptions:
+    me:                      To display info of darkcoder.
+    open:                  To open url and contact web pages.
+    linkedin:             To print url of linkedin.
+    github:               To print url of github.
+    help:                   To diaply all available commands.
+    clear:                   To clear terminal and remove historial.
   `
 }
 
@@ -71,6 +80,7 @@ export const commandNotFound = command => {
 
 export const commands = {
   linkedin: () => {},
+  welcome: welcomeCommand,
   me: meCommand,
   help: helpCommand,
   open: openCommand,
