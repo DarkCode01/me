@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import { process } from '../../utils/helpers-functions';
+
 
 export const Terminal = () => {
   const [history, setHistory] = useState([
@@ -10,9 +12,12 @@ export const Terminal = () => {
   return (
     <div className="terminal-window" style={{ whiteSpace: 'pre-wrap' }}>
       <span className="terminal-prompt">
-        { history.map(({ command, data }) => (
+        { history.map(({ command, data, _time }) => (
           <span key={ command }>
             <b>jose@segura.polanco - / ➜ &#8287; { command } </b>
+            <strong style={{ float: 'right' }}>
+              { _time }
+            </strong>
             <p>
               <b>{ data }</b>
             </p>
@@ -51,6 +56,9 @@ export const Terminal = () => {
             }
           }}
         />
+        <strong style={{ float: 'right' }}>
+          { dayjs().format('ddd HH:mm A') }
+        </strong>
       </span>
     </div>
   );

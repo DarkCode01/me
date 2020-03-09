@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { executedCommand } from './command';
 
 const OPTIONS = /--[a-zA-Z]*/ // To get all options like --option
@@ -19,6 +20,7 @@ export const process = value => {
 
   return {
     command: command,
-    data: executedCommand({ command, options, params })
+    data: executedCommand({ command, options, params }),
+    _time: dayjs().format('ddd HH:mm: A')
   }
 }

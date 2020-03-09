@@ -43,7 +43,7 @@
 
 /* Terminal styles */
 .terminal-window {
-  width: 50%;
+  width: 95%;
   height: 50%;
   padding: 5px;
 }
@@ -58,4 +58,5 @@
   background-color: rgb(14, 14, 14);
   font-weight: bold;
   font-size: 110%;
+  width: 70%;
 }
