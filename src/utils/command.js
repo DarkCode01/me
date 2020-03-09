@@ -1,10 +1,11 @@
 export const help = ({ description, usages, examples }) => {
-  return `${description}
+  return `
+  ${description}
 
-Usage:
-  ${usages.map(usage => `${usage}\n`)}
-Examples:
-  ${examples.map(example => `${example}\n`)}
+  Usage:
+    ${usages.map(usage => `${usage}\n`)}
+  Examples:
+    ${examples.map(example => `${example}\n`)}
   `
 }
 
@@ -14,6 +15,35 @@ export const executedCommand = ({ command, params, options }) => {
   } catch(TypeError) {
     return commandNotFound(command);
   }
+}
+
+export const helpCommand = () => {
+  return `
+  Available commands:
+
+  Commands:
+    me: To display info of darkcoder.
+    open: To open url and contact web pages.
+    linkedin: To print url of linkedin.
+    github: To print url of github.
+    help: To diaply all available commands.
+  `
+}
+
+export const meCommand = () => {
+  return `
+  José Miguel Segura Polanco (Darkcoder)
+
+  Hi, im web developer and devops lover.
+  Soy un poco malo al dar una autobiografia, aunque puedo aclarar
+  algunos puntos clabes de mi. Soy amante a los proyectos
+  OpenSource, aunque tengo muy pocas aportaciones algunos proyectos
+  pero mi meta es poder dedicar todo mi tiempo aportar a
+  diferentes proyectos.
+
+  Con ganas de aprender mas y poder resolver cualquier
+  problema o retos que se me cruzen en el camino :D
+  `
 }
 
 export const openCommand = (url = '', options="") => {
@@ -32,23 +62,7 @@ export const openCommand = (url = '', options="") => {
     return 'Redirecting...';
   }
 
-  return commands[url]()
-}
-
-export const meCommand = () => {
-  return `
-    José Miguel Segura Polanco (Darkcoder)
-
-    Hi, im web developer and devops lover.
-    Soy un poco malo al dar una autobiografia, aunque puedo aclarar
-    algunos puntos clabes de mi. Soy amante a los proyectos
-    OpenSource, aunque tengo muy pocas aportaciones algunos proyectos
-    pero mi meta es poder dedicar todo mi tiempo aportar a
-    diferentes proyectos.
-
-    Con ganas de aprender mas y poder resolver cualquier
-    problema o retos que se me cruzen en el camino :D
-  `
+  return commands[url]();
 }
 
 export const commandNotFound = command => {
@@ -56,10 +70,10 @@ export const commandNotFound = command => {
 }
 
 export const commands = {
-  help: () => {},
-  me: meCommand,
-  github: () => window.location.href = 'https://github.com/darkcode01/',
   linkedin: () => {},
+  me: meCommand,
+  help: helpCommand,
   open: openCommand,
-  exit: () => window.location.href = '/'
+  exit: () => window.location.href = '/',
+  github: () => window.location.href = 'https://github.com/darkcode01/',
 }

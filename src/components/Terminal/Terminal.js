@@ -3,7 +3,7 @@ import { process } from '../../utils/helpers-functions';
 
 export const Terminal = () => {
   const [history, setHistory] = useState([]);
-  const [back, setBack] = useState(1);
+  const [back, setBack] = useState(0);
 
   return (
     <div className="terminal-window" style={{ whiteSpace: 'pre-wrap' }}>
@@ -12,7 +12,7 @@ export const Terminal = () => {
           <span key={ command }>
             <b>jose@segura.polanco - / ➜ &#8287; { command } </b>
             <p>
-              { data }
+              <b>{ data }</b>
             </p>
           </span>
         ))}
@@ -26,10 +26,12 @@ export const Terminal = () => {
             let result = [];
 
             if (event.keyCode === 38) {  // to back on historu commands
-              const command = history[history.length - back];
-              event.target.value = command !== undefined ? command.command : '';
+              const index = (history.length - 1) - back;
 
-              return setBack(back + 1);
+              if (index >= 0) {
+                event.target.value = history[index].command;
+                return setBack(back + 1);
+              }
             }
 
             if (event.keyCode === 13) {
@@ -39,7 +41,7 @@ export const Terminal = () => {
               if (result.command === 'clear') return setHistory([]);
 
               return [
-                setBack(1),
+                setBack(0),
                 setHistory([
                   ...history, ...[{ ...result, command: value }]]
                 )
