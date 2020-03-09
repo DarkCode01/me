@@ -55,7 +55,7 @@
 .terminal-prompt input {
   border: 0px;
   color: rgb(67, 185, 61);
-  background-color: #000000;
+  background-color: rgb(14, 14, 14);
   font-weight: bold;
   font-size: 110%;
 }
