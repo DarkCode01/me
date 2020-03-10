@@ -1,16 +1,16 @@
 # (me) Personal Site 🇩🇴ƛ
 
-Portafolio persona de **Jose Miguel Segura Polanco**. Este proyecto surgio de la nexecidad de poder compartir un reqcurso en el que puedan conocer mas de mi, espero que les guste!
+Personal portfolio of **Jose Miguel Segura Polanco**. This project arises from the need to share a resource in which you can learn more about me, I hope you like it!
 
 ### Shell or MyTerm
 
-MyTerm es una pequeña replica de una terminal, en la cual puedes correr diferentes comando para interactuar con mis datos personales, como **CV**, **Github**, **Linkedin**, **Email** , etc...
+MyTerm is a small replica of a terminal, in which you can run different commands to interact with my personal data, such as CV, Github, Linkedin, Email, etc ...
 
-> Recuerda divertirte con esta terminal :D
+> Remember to have fun with this terminal 😁
 
 #### Aviables Commands
 
-Estos son los comandos disponibles para que puedeas divertirte:
+These are the available commands so you can have fun::
 
 **Commands to manage terminal or REPL**
 
@@ -21,7 +21,7 @@ Estos son los comandos disponibles para que puedeas divertirte:
 | `clear`           | Remove and clear hisroty of all commands. | `~$ clear`                             |
 
 
-> Para recorrer a los ultimos comandos, usar el Up Arroup.
+> To go to the last commands, use the Up Arrow.
 
 
 **Commands to manage personal information**
@@ -34,11 +34,12 @@ Estos son los comandos disponibles para que puedeas divertirte:
 
 **Command combination with | (pipe command)**
 
-El `pipe command` o `|` esta en esta terminal o REPL, puedes usarlo para combinar los comandos y hacer de forma mas interactiva.
+The `pipe command` or `|` is in this terminal or REPL, you can use it to combine the commands and do more interactively.
 
-ejemplo:
-    Si quieres abrir mi perfil de github, en vez de ejecutar el comando `open github`.
-    Puedes hacerlo de esta forma `get github | open` y se abrira de igual forma 😁, esto es uno de los secretos 😉
+Example:
+* If you want to open my github profile, instead of executing the `open github` command.
+* You can do it this way`get github | open` and it will open in the same way 😁, this is one of the secrets 😉
+
 
 
 ### Install project on your computer ⚙️ + 💻
