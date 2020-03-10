@@ -45,6 +45,10 @@ export const helpCommand = () => {
     get     :       To get url or info on attrs.
     help    :       To diaply all available  commands.
     clear   :       To clear terminal and remove historial.
+
+  Extras:
+    '|'     :       You can use the command pipe to pass result to another command.
+                    examples: get github | open
   `
 }
 
@@ -76,20 +80,21 @@ export const getCommand = (param = '') => {
 }
 
 export const openCommand = (param = '') => {
+  const urlValidator = /^(http|https):\/\/[^ "]+$/
   const url = INFORMATION[param.toLowerCase()];
 
-  if (url && param) {
+  if ((url || urlValidator.test(param)) && param) {
     // window.location.href = url // redirect to url;
-    window.open(url, '_blank');
+    window.open(url || param, '_blank');
     window.focus();
 
-    return `Opening new tab with ${url}`;
+    return `Opening new tab with ${url || param}`;
   }
 
   return help({
     description: 'Command to open the linkedin, email or github on new tab.',
-    usages: [ 'open [github | linkedin | contact]' ],
-    examples: [ '~$ open github' ]
+    usages: [ 'open [github | linkedin | contact]', 'open (https:// | http://)' ],
+    examples: [ '~$ open github', '~$ open https://google.com/' ]
   });
 }
 
