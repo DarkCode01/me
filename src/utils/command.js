@@ -39,11 +39,12 @@ export const helpCommand = () => {
   Available commands:
 
   Commands
-    me    :       To display info of darkcoder.
-    open  :       To open url and contact web pages.
-    get   :       To get url or info on attrs.
-    help  :       To diaply all available  commands.
-    clear :       To clear terminal and remove historial.
+    me      :       To display info of darkcoder.
+    open    :       To open url and contact web pages.
+    get     :       To get url or info on attrs.
+    help    :       To diaply all available  commands.
+    welcome :       Welcome message.
+    clear   :       To clear terminal and remove historial.
   `
 }
 
@@ -62,10 +63,10 @@ export const meCommand = () => {
   `
 }
 
-export const getCommand = (param) => {
+export const getCommand = (param = '') => {
   const url = INFORMATION[param.toLowerCase()];
 
-  if (url) return url;
+  if (url && param) return url;
 
   return help({
     description: 'Command to get (url|info) of github | linkedin | email | contact',
@@ -74,10 +75,10 @@ export const getCommand = (param) => {
   });
 }
 
-export const openCommand = (param) => {
+export const openCommand = (param = '') => {
   const url = INFORMATION[param.toLowerCase()];
 
-  if (url) {
+  if (url && param) {
     // window.location.href = url // redirect to url;
     window.open(url, '_blank');
     window.focus();
