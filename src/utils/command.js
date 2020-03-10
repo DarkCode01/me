@@ -1,17 +1,26 @@
+const INFORMATION = {
+  github: process.env.REACT_APP_GITHUB_URL,
+  linkedin: process.env.REACT_APP_LNKEDIN_URL,
+  telephone: process.env.REACT_APP_TEL_INFO
+}
+
 export const help = ({ description, usages, examples }) => {
   return `
-  ${description}
+    ${description}
 
-  Usage:
-    ${usages.map(usage => `${usage}\n`)}
-  Examples:
-    ${examples.map(example => `${example}\n`)}
+    Usage:
+       ${usages.join('\n\t')}
+  
+    Examples:
+      ${examples.join('\n\t')}
   `
 }
 
 export const executedCommand = ({ command, params, options }) => {
   try {
-  return commands[command](params, options);
+    if (command) return commands[command](params, options);
+
+    return '';
   } catch(TypeError) {
     return commandNotFound(command);
   }
@@ -21,7 +30,7 @@ export const welcomeCommand = () => {
   return `
   Welcome to my personal website :D
 
-  run command (help) to moore information, enjoy it!
+  run command (help) to more information, enjoy it!
  `
 }
 
@@ -29,13 +38,12 @@ export const helpCommand = () => {
   return `
   Available commands:
 
-  Commands:         Descrioptions:
-    me:                      👨‍To display info of darkcoder.
-    open:                  🌍 To open url and contact web pages.
-    linkedin:             📧 To print url of linkedin. 
-    github:               😸 To print url of github.
-    help:                   ⚙️ To diaply all available  commands.
-    clear:                  🧹 To clear terminal and remove historial.
+  Commands
+    me    :       To display info of darkcoder.
+    open  :       To open url and contact web pages.
+    get   :       To get url or info on attrs.
+    help  :       To diaply all available  commands.
+    clear :       To clear terminal and remove historial.
   `
 }
 
@@ -43,35 +51,45 @@ export const meCommand = () => {
   return `
   José Miguel Segura Polanco (Darkcoder)
 
-  Hi, im web developer and devops lover.
-  Soy un poco malo al dar una autobiografia, aunque puedo aclarar
-  algunos puntos clabes de mi. Soy amante a los proyectos
-  OpenSource, aunque tengo muy pocas aportaciones algunos proyectos
-  pero mi meta es poder dedicar todo mi tiempo aportar a
-  diferentes proyectos.
+  Hi, i'm web developer and devops lover.
 
-  Con ganas de aprender mas y poder resolver cualquier
-  problema o retos que se me cruzen en el camino :D
+  I'm a little bad at giving an autobiography,
+  although I can clarify some clab points of me.
+
+  I am a lover of projects OpenSource, although I have
+  very few contributions some projects but my goal is to
+  spend all my time contributing to different projects.
   `
 }
 
-export const openCommand = (url = '', options="") => {
+export const getCommand = (param) => {
+  const url = INFORMATION[param.toLowerCase()];
 
-  if (options === '--help' || url.length === 0) {
+  if (url) return url;
 
-    return help({
-      description: 'Command to open pages and view github, linkedin, and others.',
-      usages: ['open [ github | linkedin ]', 'open [--external] string // for external links',],
-      examples: ['~$ open github', '~$ open --external https://google.com/'],
-    });
+  return help({
+    description: 'Command to get (url|info) of github | linkedin | email | contact',
+    usages: [ 'get [github | linkedin | contact | tel]' ],
+    examples: [ '~$ get github' ]
+  });
+}
+
+export const openCommand = (param) => {
+  const url = INFORMATION[param.toLowerCase()];
+
+  if (url) {
+    // window.location.href = url // redirect to url;
+    window.open(url, '_blank');
+    window.focus();
+
+    return `Opening new tab with ${url}`;
   }
 
-  if (options === '--external') {
-    window.location.href = url // redirect to url;
-    return 'Redirecting...';
-  }
-
-  return commands[url]();
+  return help({
+    description: 'Command to open the linkedin, email or github on new tab.',
+    usages: [ 'open [github | linkedin | contact]' ],
+    examples: [ '~$ open github' ]
+  });
 }
 
 export const commandNotFound = command => {
@@ -79,11 +97,10 @@ export const commandNotFound = command => {
 }
 
 export const commands = {
-  linkedin: () => {},
   welcome: welcomeCommand,
   me: meCommand,
   help: helpCommand,
   open: openCommand,
-  exit: () => window.location.href = '/',
-  github: () => window.location.href = 'https://github.com/darkcode01/',
+  get: getCommand,
+  exit: () => window.location.href = '/'
 }
