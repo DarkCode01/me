@@ -40,12 +40,13 @@ export const helpCommand = () => {
   Available commands:
 
   Commands
-    welcome :       Welcome message.
-    me      :       To display info of darkcoder.
-    open    :       To open url and contact web pages.
-    get     :       To get url or info on attrs.
-    help    :       To diaply all available  commands.
-    clear   :       To clear terminal and remove historial.
+    welcome  :       Welcome message.
+    me       :       To display info of darkcoder.
+    open     :       To open url and contact web pages.
+    get      :       To get url or info on attrs.
+    download :       To Download files or my CV 😉.
+    help     :       To diaply all available  commands.
+    clear    :       To clear terminal and remove historial.
 
   Extras:
     '|'     :       You can use the command pipe to pass result to another command.
@@ -82,11 +83,20 @@ export const getCommand = (param = '') => {
 
 export const downloadCommand = (param = '') => {
   const downloadButton = document.createElement('a');
-  downloadButton.download = `${param}`;
-  downloadButton.href = param;
-  downloadButton.click();
 
-  return `Downloaded!`;
+  if (param) {
+    downloadButton.download = `${param}`;
+    downloadButton.href = param;
+    downloadButton.click();
+
+    return `Downloaded!`;
+  }
+
+  return help({
+    description: 'Command to download files like my CV 😉',
+    usages: [ 'download (http | https)' ],
+    examples: [ '~$ download https://something.com/file.pdf', '~$ get cv | download' ]
+  });
 }
 
 export const openCommand = (param = '') => {

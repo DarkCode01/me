@@ -26,19 +26,16 @@ These are the available commands so you can have fun::
 
 **Commands to manage personal information**
 
-| Command           | Description                                   | Example                                            |
-| ----------------- | --------------------------------------------- | -------------------------------------------------- |
-| `me`              | Display my bio!                               | `~$ me`                                            |
-| `get`             | Get informaion or URL's other accounts.       | `~$ get github` # return my github url.            |
-| `open`            | Open on new tab my personals accounts or URL. | `~$ open github` # new tab with my github account. |
+| Command           | Description                                   | Example                                              |
+| ----------------- | --------------------------------------------- | ---------------------------------------------------- |
+| `me`              | Display my bio!                               | `~$ me`                                              |
+| `get`             | Get informaion or URL's other accounts.       | `~$ get github` # return my github url.              |
+| `open`            | Open on new tab my personals accounts or URL. | `~$ get github | open` or `open https://google.com/` |
+| `download`        | Download files of my CV 😉.                   | `~$ open github` # new tab with my github account.   |
 
 **Command combination with | (pipe command)**
 
 The `pipe command` or `|` is in this terminal or REPL, you can use it to combine the commands and do more interactively.
-
-Example:
-* If you want to open my github profile, instead of executing the `open github` command.
-* You can do it this way`get github | open` and it will open in the same way 😁, this is one of the secrets 😉
 
 
 
