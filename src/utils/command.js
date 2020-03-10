@@ -30,12 +30,12 @@ export const helpCommand = () => {
   Available commands:
 
   Commands:         Descrioptions:
-    me:                      To display info of darkcoder.
-    open:                  To open url and contact web pages.
-    linkedin:             To print url of linkedin.
-    github:               To print url of github.
-    help:                   To diaply all available commands.
-    clear:                   To clear terminal and remove historial.
+    me:                      👨‍To display info of darkcoder.
+    open:                  🌍 To open url and contact web pages.
+    linkedin:             📧 To print url of linkedin. 
+    github:               😸 To print url of github.
+    help:                   ⚙️ To diaply all available  commands.
+    clear:                  🧹 To clear terminal and remove historial.
   `
 }
 

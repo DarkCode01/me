@@ -19,7 +19,7 @@ export const Terminal = () => {
               { _time }
             </strong>
             <p>
-              <b>{ data }</b>
+              <b style={{ color: 'white' }}>{ data }</b>
             </p>
           </span>
         ))}
