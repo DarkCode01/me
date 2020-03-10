@@ -1,6 +1,7 @@
 const INFORMATION = {
   github: process.env.REACT_APP_GITHUB_URL,
   linkedin: process.env.REACT_APP_LINKEDIN_URL,
+  cv: process.env.REACT_APP_CV_URL,
   telephone: process.env.REACT_APP_TEL_INFO
 }
 
@@ -70,31 +71,39 @@ export const meCommand = () => {
 export const getCommand = (param = '') => {
   const url = INFORMATION[param.toLowerCase()];
 
-  if (url && param) return url;
+  if (url) return url;
 
   return help({
-    description: 'Command to get (url|info) of github | linkedin | email | contact',
-    usages: [ 'get [github | linkedin | contact | tel]' ],
+    description: 'Command to get (url|info) of github | linkedin | email | cv',
+    usages: [ 'get [github | linkedin | cv | tel]' ],
     examples: [ '~$ get github' ]
   });
 }
 
+export const downloadCommand = (param = '') => {
+  const downloadButton = document.createElement('a');
+  downloadButton.download = `${param}`;
+  downloadButton.href = param;
+  downloadButton.click();
+
+  return `Downloaded!`;
+}
+
 export const openCommand = (param = '') => {
   const urlValidator = /^(http|https):\/\/[^ "]+$/
-  const url = INFORMATION[param.toLowerCase()];
 
-  if ((url || urlValidator.test(param)) && param) {
+  if (urlValidator.test(param)) {
     // window.location.href = url // redirect to url;
-    window.open(url || param, '_blank');
+    window.open(param, '_blank');
     window.focus();
 
-    return `Opening new tab with ${url || param}`;
+    return `Opening new tab with ${param}`;
   }
 
   return help({
     description: 'Command to open the linkedin, email or github on new tab.',
-    usages: [ 'open [github | linkedin | contact]', 'open (https:// | http://)' ],
-    examples: [ '~$ open github', '~$ open https://google.com/' ]
+    usages: [ 'open (https:// | http://)' ],
+    examples: [ '~$ get github | open', '~$ open https://google.com/' ]
   });
 }
 
@@ -108,5 +117,6 @@ export const commands = {
   help: helpCommand,
   open: openCommand,
   get: getCommand,
+  download: downloadCommand,
   exit: () => window.location.href = '/'
 }
