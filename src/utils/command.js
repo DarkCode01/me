@@ -1,6 +1,6 @@
 const INFORMATION = {
   github: process.env.REACT_APP_GITHUB_URL,
-  linkedin: process.env.REACT_APP_LNKEDIN_URL,
+  linkedin: process.env.REACT_APP_LINKEDIN_URL,
   telephone: process.env.REACT_APP_TEL_INFO
 }
 
@@ -39,11 +39,11 @@ export const helpCommand = () => {
   Available commands:
 
   Commands
+    welcome :       Welcome message.
     me      :       To display info of darkcoder.
     open    :       To open url and contact web pages.
     get     :       To get url or info on attrs.
     help    :       To diaply all available  commands.
-    welcome :       Welcome message.
     clear   :       To clear terminal and remove historial.
   `
 }
