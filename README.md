@@ -30,8 +30,8 @@ These are the available commands so you can have fun::
 | ----------------- | --------------------------------------------- | ---------------------------------------------------- |
 | `me`              | Display my bio!                               | `~$ me`                                              |
 | `get`             | Get informaion or URL's other accounts.       | `~$ get github` # return my github url.              |
-| `open`            | Open on new tab my personals accounts or URL. | `~$ get github | open` or `open https://google.com/` |
-| `download`        | Download files of my CV 😉.                   | `~$ open github` # new tab with my github account.   |
+| `open`            | Open on new tab my personals accounts or URL. | `~$ get github \| open` or `open https://google.com` |
+| `download`        | Download files of my CV 😉.                   | `~$ get github \| download`.                         |
 
 **Command combination with | (pipe command)**
 
