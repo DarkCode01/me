@@ -3,6 +3,19 @@ import { executedCommand } from './command';
 
 const OPTIONS = /--[a-zA-Z]*/ // To get all options like --option
 
+export const parserPipe = value => {
+  if (value.indexOf('|') !== -1) {
+    // return value.split('|');
+    
+    const commandsSeparated = value.split('|').map(command => command.trim());
+    const results = pipeProcess(commandsSeparated, 0, '');
+
+    return results;
+  }
+
+  return process(value);
+}
+
 export const parserInput = value => {
   const [command, params] = value.split(' ');
   let options = OPTIONS.exec(params);
@@ -13,6 +26,18 @@ export const parserInput = value => {
     options: options.toLowerCase(),
     params: params
   }
+}
+
+export const pipeProcess = (commands, index, lastResultCommand) => {
+  if (index === commands.length) return lastResultCommand;
+
+  const param = typeof(lastResultCommand) === 'object' ? lastResultCommand.data : '';
+
+  return pipeProcess(
+    commands,
+    index + 1,
+    process(`${commands[index]} ${param}`)
+  );
 }
 
 export const process = value => {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
-import { process } from '../../utils/helpers-functions';
+import { parserPipe } from '../../utils/helpers-functions';
 
 
 export const Terminal = () => {
   const [history, setHistory] = useState([
-    process('welcome')
+    parserPipe('welcome')
   ]);
   const [back, setBack] = useState(0);
 
@@ -42,7 +42,7 @@ export const Terminal = () => {
             }
 
             if (event.keyCode === 13) {
-              result = process(value);
+              result = parserPipe(value);
               event.target.value = "";
 
               if (result.command === 'clear') return setHistory([]);
