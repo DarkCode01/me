@@ -7,7 +7,6 @@
 
 # enviroments variables
 .env
-.env.*
 
 # testing
 /coverage
