@@ -3,7 +3,8 @@ import {
   helpCommand,
   getCommand,
   executedCommand,
-  downloadCommand
+  downloadCommand,
+  meCommand
 } from '../command';
 
 describe('Test use of executed command!', () => {
@@ -23,6 +24,25 @@ describe('Test all commands functions.', () => {
 
   test('it return help message.', () => {
     expect(typeof(helpCommand())).toBe('string');
+  });
+
+  test('verify me command return the correct message.', () => {
+    const correctMessage = `
+  José Miguel Segura Polanco (Darkcoder)
+
+  Hi, i'm web developer and devops lover.
+
+  I'm a little bad at giving an autobiography,
+  although I can clarify some clab points of me.
+
+  I am a lover of projects OpenSource, although I have
+  very few contributions some projects but my goal is to
+  spend all my time contributing to different projects.
+  `;
+    const message = meCommand();
+
+    expect(typeof(message)).toBe('string');
+    expect(message.trim() == correctMessage.trim()).toBe(true)
   });
 
   test('it return get message.', () => {
