@@ -2,7 +2,8 @@ import {
   welcomeCommand,
   helpCommand,
   getCommand,
-  executedCommand
+  executedCommand,
+  downloadCommand
 } from '../command';
 
 describe('Test use of executed command!', () => {
@@ -31,5 +32,12 @@ describe('Test all commands functions.', () => {
     expect(typeof(getCommand(''))).toBe('string')
     expect(getCommand('github')).toEqual(github);
     expect(getCommand('linkedin')).toEqual(linkedin);
+  });
+
+  test('it return download message.', () => {
+    const result = downloadCommand('cv');
+
+    expect(typeof(result)).toBe('string');
+    expect(result).toEqual('Downloaded!');
   });
 });
