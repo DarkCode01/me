@@ -6,6 +6,7 @@ import { Home } from './components/Home';
 import { Terminal } from './components/Terminal';
 
 // Styles css
+import 'antd/dist/antd.css';
 import './styles/index.css';
 import './styles/App.css';
 

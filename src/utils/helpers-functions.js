@@ -2,6 +2,18 @@ import dayjs from 'dayjs';
 import { executedCommand } from './command';
 
 const OPTIONS = /--[a-zA-Z]*/ // To get all options like --option
+const PREFIXES = [
+  '(FullStack) Web Developer <3',
+  'I ❤️ Open Source',
+  'I ❤️ Linux projects',
+  'Lover of Lambda Calculus',
+  'Functional Programming ❤️',
+  'Elixir ❤️'
+]
+
+export const prefixRandom = () => {
+  return PREFIXES[Math.floor(Math.random() * PREFIXES.length)];
+}
 
 export const parserPipe = value => {
   if (value.indexOf('|') !== -1) {
