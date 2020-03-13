@@ -1,10 +1,12 @@
-# (me) Personal Site 🇩🇴ƛ
+# me 🇩🇴ƛ
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e28e21fa-a55a-48b0-ae97-3c00e74f8b4b/deploy-status)](https://app.netlify.com/sites/josesp/deploys)
 
 Personal portfolio of **Jose Miguel Segura Polanco**. This project arises from the need to share a resource in which you can learn more about me, I hope you like it!
 
-### Shell or MyTerm
+### Terminal
 
-MyTerm is a small replica of a terminal, in which you can run different commands to interact with my personal data, such as CV, Github, Linkedin, Email, etc ...
+Terminal is a small replica of a terminal, in which you can run different commands to interact with my personal data, such as CV, Github, Linkedin, Email, etc ...
 
 > Remember to have fun with this terminal 😁
 
