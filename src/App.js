@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// Components
-import { Home } from './components/Home';
-import { Terminal } from './components/Terminal';
+// Pages & Components
+import {
+  Home,
+  Terminal,
+  Portafolio
+} from './pages';
 
 // Styles css
 import 'antd/dist/antd.css';
@@ -13,11 +16,13 @@ import './styles/App.css';
 
 function App() {
   return (
-    <div className="app">
+    <div>
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route excat path="/terminal" component={Terminal} />
+
+          <Route excat path="/whoami" component={Portafolio} />
         </Switch>
       </Router>
     </div>

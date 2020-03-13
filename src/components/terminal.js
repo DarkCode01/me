@@ -1,32 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { parserPipe } from '../../utils/helpers-functions';
+import { v4 as uuid } from 'uuid';
+import { parserPipe } from '../utils/helpers-functions';
 
 
 export const Terminal = () => {
-  const [history, setHistory] = useState([
-    parserPipe('welcome')
-  ]);
+  const reference = useRef(null);
   const [back, setBack] = useState(0);
+  const [history, setHistory] = useState([ parserPipe('welcome') ]);
+  
+  // To scroll button
+  useEffect(() => {
+    reference.current.scrollIntoView({
+      behavior: 'smooth',  block: 'end', inline: 'end'
+    });
+  });
 
   return (
     <div className="terminal-window" style={{ whiteSpace: 'pre-wrap' }}>
       <span className="terminal-prompt">
-        { history.map(({ command, data, _time }) => (
-          <span key={ command }>
-            <b>jose@segura.polanco - / ➜ &#8287; { command } </b>
-            <strong style={{ float: 'right' }}>
-              { _time }
-            </strong>
-            <p>
-              <b style={{ color: 'white' }}>{ data }</b>
-            </p>
-          </span>
-        ))}
+        <div>
+          { history.map(({ command, data, _time }) => (
+            <span key={ uuid() }>
+              <b>jm@segura.polanco - / ➜ &#8287; { command } </b>
+              <strong style={{ float: 'right' }}>
+                { _time }
+              </strong>
+              <p>
+                <b style={{ color: 'white' }}>{ data }</b>
+              </p>
+            </span>
+          ))}
+        </div>
 
         {/* Prompt of terminal */}
-        <b>jose@segura.polanco - / ➜</b> &#8287;
+        <b>jm@segura.polanco - / ➜</b> &#8287;
         <input
+          ref={reference}
           type="text"
           onKeyDown={event => {
             const value = event.target.value;
