@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { prefixRandom } from '../../utils/helpers-functions';
+import React from 'react';
+import shuffle from 'lodash/shuffle'
+import { PREFIXES} from '../../utils/helpers-functions';
 
+import ReactTypingEffect from 'react-typing-effect';
 import { Button, Col, Row } from 'antd';
 import { CodeOutlined, IdcardOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 
 export const Home = () => {
-  const [prefix, setPrefix] = useState(prefixRandom());
-
-  // useEffect(() => {
-    // setInterval(() => setPrefix(prefixRandom()), 3000);
-  // });
-
   return (
     <header className="app-header">
       <img
@@ -21,16 +17,22 @@ export const Home = () => {
         className="App-logo"
         alt="logo"
       />
-      <p className="typing-effect">
-        José M. Segura Polanco
-        <br />
+      <h2 style={{ color: 'white' }}>
+        José Miguel Segura Polanco
+      </h2>
+      <p>
         <a
           className="app-link"
           href="https://github.com/darkcode01"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <code>{ prefix }</code>
+          <code>
+            <ReactTypingEffect
+              text={shuffle(PREFIXES)}
+              speed={100}
+            />
+          </code>
         </a>
       </p>
       
