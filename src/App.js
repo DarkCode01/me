@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { version } from '../package.json';
 
 // Pages & Components
 import {
@@ -20,7 +21,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route excat path="/terminal" component={Terminal} />
+          
+          { version !== '0.1.0' && <Route excat path="/terminal" component={Terminal} /> }
 
           <Route excat path="/whoami" component={Portafolio} />
         </Switch>
