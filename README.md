@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# (me) Personal Site 🇩🇴ƛ
 
-## Available Scripts
+Personal portfolio of **Jose Miguel Segura Polanco**. This project arises from the need to share a resource in which you can learn more about me, I hope you like it!
 
-In the project directory, you can run:
+### Shell or MyTerm
 
-### `yarn start`
+MyTerm is a small replica of a terminal, in which you can run different commands to interact with my personal data, such as CV, Github, Linkedin, Email, etc ...
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> Remember to have fun with this terminal 😁
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Aviables Commands
 
-### `yarn test`
+These are the available commands so you can have fun::
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Commands to manage terminal or REPL**
 
-### `yarn build`
+| Command           | Description                               | Examples                               |
+| ----------------- | ----------------------------------------- | -------------------------------------- |
+| `welcome`         | Command to display the welcome message.   | `~$ welcome`                           |
+| `help`            | To view all aviables commands.            | `~$ help`                              |
+| `clear`           | Remove and clear hisroty of all commands. | `~$ clear`                             |
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+> To go to the last commands, use the Up Arrow.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+**Commands to manage personal information**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+| Command           | Description                                   | Example                                              |
+| ----------------- | --------------------------------------------- | ---------------------------------------------------- |
+| `me`              | Display my bio!                               | `~$ me`                                              |
+| `get`             | Get informaion or URL's other accounts.       | `~$ get github` # return my github url.              |
+| `open`            | Open on new tab my personals accounts or URL. | `~$ get github \| open` or `open https://google.com` |
+| `download`        | Download files of my CV 😉.                   | `~$ get github \| download`.                         |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Command combination with | (pipe command)**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The `pipe command` or `|` is in this terminal or REPL, you can use it to combine the commands and do more interactively.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Install project on your computer ⚙️ + 💻
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. `git clone git@github.com:DarkCode01/me.git`
+2. `cd me`
+3. `yarn install`
+4. `yarn start`
