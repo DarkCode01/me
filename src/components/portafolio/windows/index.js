@@ -1,0 +1,1 @@
+export { WindowComponent } from './window';

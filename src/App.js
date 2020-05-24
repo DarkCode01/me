@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route excat path="/terminal" component={Terminal} />
 
-          <Route excat path="/whoami" component={Portafolio} />
+          <Route excat path="/gui" component={Portafolio} />
         </Switch>
       </Router>
     </div>
