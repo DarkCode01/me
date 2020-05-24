@@ -91,3 +91,15 @@
   color: white;
   text-align: center;
 }
+
+/* Desktop */
+.file-folder {
+  color: white;
+  cursor: pointer;
+}
+
+.icon-file-folder {
+  font-size: 500%;
+  color: white;
+  margin-bottom: 0;
+}

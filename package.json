@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.0.2",
     "dayjs": "^1.8.22",
+    "dragselect": "^1.13.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
