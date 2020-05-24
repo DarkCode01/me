@@ -3,7 +3,7 @@ import { Col } from 'antd';
 
 export const FolderOrFileComponent = ({ fileOrFolder }) => {
   return (
-    <Col span={12} className="file-folder item" key={fileOrFolder.name}>
+    <Col span={12} className="file-folder item">
       <span className="icon-file-folder">
         { fileOrFolder.icon }
       </span>

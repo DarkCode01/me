@@ -28,7 +28,9 @@ class Portafolio extends Component {
   render() {
     return (
       <Layout id="desktop" style={{ backgroundColor: 'transparent' }}>
-        <Layout.Content>Content</Layout.Content>
+        <Layout.Content style={{ padding: '50px' }}>
+          <PortafolioComponent.WindowComponent />
+        </Layout.Content>
         <Layout.Sider theme="dark" breakpoint="sm" style={{ backgroundColor: 'transparent' }}>
           {/* Folders and executables */}
           <PortafolioComponent.FoldersComponent
