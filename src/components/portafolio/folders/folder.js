@@ -1,15 +1,31 @@
 import React from 'react';
-import { Col } from 'antd';
+import { useDrag } from 'react-dnd';
 
-export const FolderOrFileComponent = ({ fileOrFolder }) => {
+export const FolderOrFileComponent = ({ fileOrFolder, id, top, left }) => {
+  const [{ isDragging }, drag] = useDrag({
+    item: { id, left, top, type: 'FoldersComponent' },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    })
+  });
+
+  if (isDragging) {
+    return <div ref={drag} />
+  }
+
   return (
-    <Col span={12} className="file-folder item">
+    <div
+      ref={drag}
+      className="file-folder item"
+      style={{
+        top: fileOrFolder.top,
+        left: fileOrFolder.left
+      }}
+      onClick={() => alert('s')}
+    >
       <span className="icon-file-folder">
         { fileOrFolder.icon }
       </span>
-      <p className="title-file-folder">
-        { fileOrFolder.name }
-      </p>
-    </Col>
+    </div>
   );
 }

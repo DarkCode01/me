@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import DragSelect from 'dragselect';
 import { Layout } from 'antd';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Portafolio as PortafolioComponent } from '../components';
 import { FolderFilled, CodeFilled } from '@ant-design/icons';
 
@@ -17,29 +18,21 @@ class Portafolio extends Component {
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundPosition = 'center center';
     document.body.style.backgroundImage = 'url(darkcoder.jpg)';
-
-    // effect of select objects
-    new DragSelect({
-      selectables: document.querySelectorAll('.item'),
-      area: document.querySelector('#desktop')
-    });
   }
 
   render() {
     return (
-      <Layout id="desktop" style={{ backgroundColor: 'transparent' }}>
-        <Layout.Content style={{ padding: '50px' }}>
-          <PortafolioComponent.WindowComponent />
+      <Layout style={{ backgroundColor: 'transparent' }}>
+        <Layout.Content>
+          <DndProvider backend={HTML5Backend}>
+            <PortafolioComponent.FoldersComponent
+              folders={{
+                folder: { top: 20, left: 20, icon: <FolderFilled />, name: 'Me - Files', open: '' },
+                terminal: { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' }
+              }}
+            />
+          </DndProvider>
         </Layout.Content>
-        <Layout.Sider theme="dark" breakpoint="sm" style={{ backgroundColor: 'transparent' }}>
-          {/* Folders and executables */}
-          <PortafolioComponent.FoldersComponent
-            folders={[
-              { icon: <FolderFilled />, name: 'Me - Files', open: '' },
-              { icon: <CodeFilled />, name: 'terminal', open: '' }
-            ]}
-          />
-        </Layout.Sider>
       </Layout>
     );
   }

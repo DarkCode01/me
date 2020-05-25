@@ -21,7 +21,7 @@ const MenuC = (
   </Menu>
 );
 
-export const ActionMenu = ({ }) => {
+export const ActionMenu = () => {
   return (
     <Dropdown overlay={MenuC} placement="bottomLeft">
       <button>s</button>
