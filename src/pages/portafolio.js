@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
 
 import { Layout } from 'antd';
 import { DndProvider } from 'react-dnd';
@@ -11,7 +12,20 @@ class Portafolio extends Component {
   constructor() {
     super();
 
-    this.state = { }
+    this.state = {
+      data: {
+        terminal: { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' },
+        folder: {
+          top: 20,
+          left: 20,
+          icon: <FolderFilled />,
+          name: 'Me - Files',
+          open: this.openNewWindow.bind(this)({ title: 'no', files: [null, null]})
+        }
+      }
+    }
+
+    this.moveBox = this.moveBox.bind(this);
   }
 
   componentDidMount() {
@@ -20,16 +34,39 @@ class Portafolio extends Component {
     document.body.style.backgroundImage = 'url(darkcoder.jpg)';
   }
 
+  openNewWindow({ files, title }) {
+    return () => {
+      this.setState(({ data }) => ({
+        data: {
+          ...data,
+          window: {
+            top: 20, left: 150,
+            name: 'gfhgfghfhg', open: '',
+            icon: <PortafolioComponent.WindowComponent title={title} files={files} />
+          }
+        }
+      }));
+    }
+  }
+
+  moveBox(id, left, top) {
+    this.setState(({ data }) => ({
+      data: update(this.state.data, {
+        [id]: {
+          $merge: { left, top },
+        },
+      })
+    }));
+  }
+
   render() {
     return (
       <Layout style={{ backgroundColor: 'transparent' }}>
         <Layout.Content>
           <DndProvider backend={HTML5Backend}>
             <PortafolioComponent.FoldersComponent
-              folders={{
-                folder: { top: 20, left: 20, icon: <FolderFilled />, name: 'Me - Files', open: '' },
-                terminal: { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' }
-              }}
+              folders={this.state.data}
+              moveBox={this.moveBox}
             />
           </DndProvider>
         </Layout.Content>

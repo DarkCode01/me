@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDrop } from 'react-dnd';
-import update from 'immutability-helper';
 import { FolderOrFileComponent } from './folder';
 
-export const FoldersComponent = ({ folders }) => {
-  const [data, setData] = useState(folders);
+export const FoldersComponent = ({ folders, moveBox}) => {
   const [, drop] = useDrop({
     accept: 'FoldersComponent',
     drop(item, monitor) {
@@ -19,25 +17,15 @@ export const FoldersComponent = ({ folders }) => {
     }
   });
 
-  const moveBox = (id, left, top) => {
-    setData(
-      update(data, {
-        [id]: {
-          $merge: { left, top },
-        },
-      }),
-    )
-  }
-
   return (
     <div ref={drop} className="desktop">
-      { Object.keys(data).map(key => (
+      { Object.keys(folders).map(key => (
         <FolderOrFileComponent
           key={Math.random() * 100}
-          fileOrFolder={data[key]}
+          fileOrFolder={folders[key]}
           id={key}
-          top={data[key].top}
-          left={data[key].left}
+          top={folders[key].top}
+          left={folders[key].left}
         />
       ))}
     </div>

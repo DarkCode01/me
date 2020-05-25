@@ -102,10 +102,9 @@
 .file-folder {
   color: white;
   cursor: pointer;
-  width: 70px;
-  height: 100px;
+  width: auto;
+  height: auto;
   position: absolute;
-  margin-top: 10px;
 }
 
 .icon-file-folder {
@@ -114,5 +113,11 @@
 }
 
 .window {
-  position: absolute;
+  padding: 20px;
+  width: 150vh;
+  height: 80vh;
+}
+
+.window-files {
+  margin: 15px
 }

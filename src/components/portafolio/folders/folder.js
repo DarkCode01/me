@@ -21,7 +21,7 @@ export const FolderOrFileComponent = ({ fileOrFolder, id, top, left }) => {
         top: fileOrFolder.top,
         left: fileOrFolder.left
       }}
-      onClick={() => alert('s')}
+      onClick={fileOrFolder.open}
     >
       <span className="icon-file-folder">
         { fileOrFolder.icon }
