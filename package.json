@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.0.2",
     "dayjs": "^1.8.22",
-    "dragselect": "^1.13.1",
     "immutability-helper": "^3.0.2",
     "react": "^16.13.0",
     "react-dnd": "^11.0.0",

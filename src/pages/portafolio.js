@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { Layout } from 'antd';
-import DragSelect from 'dragselect';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Portafolio as PortafolioComponent } from '../components';
@@ -19,12 +18,6 @@ class Portafolio extends Component {
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundPosition = 'center center';
     document.body.style.backgroundImage = 'url(darkcoder.jpg)';
-
-    // effect of select objects
-    new DragSelect({
-      selectables: document.querySelectorAll('.item'),
-      area: document.querySelector('.desktop')
-    });
   }
 
   render() {
@@ -35,7 +28,7 @@ class Portafolio extends Component {
             <PortafolioComponent.FoldersComponent
               folders={{
                 folder: { top: 20, left: 20, icon: <FolderFilled />, name: 'Me - Files', open: '' },
-                exec: { top: 180, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' }
+                terminal: { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' }
               }}
             />
           </DndProvider>

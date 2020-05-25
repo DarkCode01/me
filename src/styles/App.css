@@ -103,7 +103,7 @@
   color: white;
   cursor: pointer;
   width: 70px;
-  height: 150px;
+  height: 100px;
   position: absolute;
   margin-top: 10px;
 }
@@ -111,7 +111,6 @@
 .icon-file-folder {
   font-size: 500%;
   color: white;
-  margin-bottom: 0;
 }
 
 .window {

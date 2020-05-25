@@ -26,9 +26,6 @@ export const FolderOrFileComponent = ({ fileOrFolder, id, top, left }) => {
       <span className="icon-file-folder">
         { fileOrFolder.icon }
       </span>
-      <p className="title-file-folder">
-        { fileOrFolder.name }
-      </p>
     </div>
   );
 }
