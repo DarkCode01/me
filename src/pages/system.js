@@ -15,16 +15,41 @@ class System extends Component {
     super();
 
     this.state = {
+      booting: true,
       pids: { }
     }
 
     this.moveInterface = this.moveInterface.bind(this);
+    this.afterBoot = this.afterBoot.bind(this);
     this.createProcess = this.createProcess.bind(this);
     this.runProcess = this.runProcess.bind(this);
     this.killProccess = this.killProccess.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    logger('Init boot process');
+    document.body.style.backgroundColor = 'rgb(14, 14, 14)';
+
+    setTimeout(async () => {
+      await this.setState({ booting: false });
+
+      logger('Loading fonts and background images...');
+      document.body.style.backgroundImage = 'url(darkcoder.jpg)';
+
+      logger('Loaded background image ✅');
+
+      document.body.style.backgroundSize = 'cover';
+      logger('Resizing background image ✅');
+
+      document.body.style.backgroundPosition = 'center center';
+      logger('Center background image ✅');
+
+      await this.afterBoot();
+      logger('Finished boot system ✅');
+    }, 3000);
+  }
+
+  async afterBoot() {
     // executable of terminal and folder of files
     const configurations = [
       {
@@ -58,12 +83,6 @@ class System extends Component {
       },
       { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' },
     ];
-
-    logger('Loading fonts and background images...');
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center center';
-    document.body.style.backgroundImage = 'url(darkcoder.jpg)';
-    logger('Loaded ✅');
 
     // create process.
     for (let configuration of configurations) {
@@ -117,12 +136,15 @@ class System extends Component {
     return (
       <Layout style={{ backgroundColor: 'transparent' }}>
         <Layout.Content>
-          <DndProvider backend={HTML5Backend}>
-            <SystemComponents.PIDsComponent
-              pids={this.state.pids}
-              moveInterface={this.moveInterface}
-            />
-          </DndProvider>
+          { !this.state.booting
+            ? <DndProvider backend={HTML5Backend}>
+                <SystemComponents.PIDsComponent
+                  pids={this.state.pids}
+                  moveInterface={this.moveInterface}
+                />
+              </DndProvider>
+            : <SystemComponents.BootComponent />
+          }
         </Layout.Content>
       </Layout>
     );
