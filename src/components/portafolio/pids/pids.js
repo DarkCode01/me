@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import { FolderOrFileComponent } from './folder';
+import { PIDComponent } from './pid';
 
-export const FoldersComponent = ({ folders, moveBox }) => {
+export const PIDsComponent = ({ pids, moveInterface }) => {
   const [, drop] = useDrop({
-    accept: 'FoldersComponent',
+    accept: 'PIDsComponent',
     drop(item, monitor) {
       const delta = monitor.getDifferenceFromInitialOffset();
-      moveBox(
+      moveInterface(
         item.id,
         Math.round(item.left + delta.x),
         Math.round(item.top + delta.y)
@@ -19,13 +19,13 @@ export const FoldersComponent = ({ folders, moveBox }) => {
 
   return (
     <div ref={drop} className="desktop">
-      { Object.keys(folders).map(key => (
-        <FolderOrFileComponent
+      { Object.keys(pids).map(key => (
+        <PIDComponent
           key={Math.random() * 100}
-          fileOrFolder={folders[key]}
+          pid={pids[key]}
           id={key}
-          top={folders[key].top}
-          left={folders[key].left}
+          top={pids[key].top}
+          left={pids[key].left}
         />
       ))}
     </div>

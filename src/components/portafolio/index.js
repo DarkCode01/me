@@ -1,9 +1,9 @@
 import { Navbar } from './navbar';
-import { FoldersComponent } from './folders';
+import { PIDsComponent } from './pids';
 import { WindowComponent } from './windows';
 
 export const Portafolio = {
   Navbar,
-  FoldersComponent,
+  PIDsComponent,
   WindowComponent
 }

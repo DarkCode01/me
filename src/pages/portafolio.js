@@ -18,7 +18,7 @@ class Portafolio extends Component {
       pids: { }
     }
 
-    this.moveBox = this.moveBox.bind(this);
+    this.moveInterface = this.moveInterface.bind(this);
     this.createProcess = this.createProcess.bind(this);
     this.runProcess = this.runProcess.bind(this);
     this.killProccess = this.killProccess.bind(this);
@@ -98,7 +98,7 @@ class Portafolio extends Component {
     this.setState({ pids: { ...this.state.pids }});
   }
 
-  moveBox(id, left, top) {
+  moveInterface(id, left, top) {
     this.setState(({ pids }) => ({
       pids: update(this.state.pids, {
         [id]: {
@@ -113,9 +113,9 @@ class Portafolio extends Component {
       <Layout style={{ backgroundColor: 'transparent' }}>
         <Layout.Content>
           <DndProvider backend={HTML5Backend}>
-            <PortafolioComponent.FoldersComponent
-              folders={this.state.pids}
-              moveBox={this.moveBox}
+            <PortafolioComponent.PIDsComponent
+              pids={this.state.pids}
+              moveInterface={this.moveInterface}
             />
           </DndProvider>
         </Layout.Content>

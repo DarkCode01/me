@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 
-export const FolderOrFileComponent = ({ fileOrFolder, id, top, left }) => {
+export const PIDComponent = ({ pid, id, top, left }) => {
   const [{ isDragging }, drag] = useDrag({
-    item: { id, left, top, type: 'FoldersComponent' },
+    item: { id, left, top, type: 'PIDsComponent' },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     })
@@ -18,13 +18,13 @@ export const FolderOrFileComponent = ({ fileOrFolder, id, top, left }) => {
       ref={drag}
       className="file-folder item"
       style={{
-        top: fileOrFolder.top,
-        left: fileOrFolder.left
+        top: pid.top,
+        left: pid.left
       }}
-      onClick={fileOrFolder.open}
+      onClick={pid.open}
     >
       <span className="icon-file-folder">
-        { fileOrFolder.icon }
+        { pid.icon }
       </span>
     </div>
   );
