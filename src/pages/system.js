@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import update from 'immutability-helper';
-import { createPID, logger } from '../utils/helpers-functions';
-
+import { connect } from 'react-redux';
+import { logger } from '../utils/helpers-functions';
+import {
+  initBoot,
+  stopBoot,
+  registerProcess,
+  registerConfigurationProcess,
+  updatePositionWidget,
+  killProcess,
+  killAllProcess
+} from '../store/actions/system';
 
 import { Layout } from 'antd';
 import { DndProvider } from 'react-dnd';
@@ -11,26 +19,19 @@ import { FolderFilled, CodeFilled, FilePdfOutlined } from '@ant-design/icons';
 
 
 class System extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {
-      booting: true,
-      pids: { }
-    }
+    this.state = {};
 
-    this.moveInterface = this.moveInterface.bind(this);
     this.afterBoot = this.afterBoot.bind(this);
-    this.createProcess = this.createProcess.bind(this);
-    this.runProcess = this.runProcess.bind(this);
-    this.killProccess = this.killProccess.bind(this);
   }
 
-  componentDidMount() {
-    logger('Init boot process');
+  async componentDidMount() {
+    await this.props.initBoot();
 
     setTimeout(async () => {
-      await this.setState({ booting: false });
+      await this.props.stopBoot();
 
       logger('Loading fonts and background images...');
       document.body.style.backgroundImage = 'url(darkcoder.jpg)';
@@ -44,7 +45,6 @@ class System extends Component {
       logger('Center background image ✅');
 
       await this.afterBoot();
-      logger('Finished boot system ✅');
     }, 3000);
   }
 
@@ -54,57 +54,63 @@ class System extends Component {
       {
         top: 20,
         left: 20,
-        icon: <FolderFilled />,
+        widget: <FolderFilled />,
         name: 'Me - Files',
         open: async () => {
-          const pid = await this.createProcess();
+          const pid = await this.props.registerProcess();
 
-          await this.runProcess(pid, {
-            top: 20,
-            left: 150,
-            name: pid,
-            open: '',
-            icon: <SystemComponents.WindowComponent
-              title="Nose"
-              close={() => this.killProccess(pid)}
-              children={ [null, null].map(file => (
-                <FilePdfOutlined
-                  key={Math.random() * 100}
-                  className="window-files"
-                  style={{ fontSize: '500%' }}
-                />
-              ))}
-            />
+          await this.props.registerConfigurationProcess({
+            pid: pid,
+            configuration: {
+              top: 20,
+              left: 150,
+              name: pid,
+              open: '',
+              widget: <SystemComponents.WindowComponent
+                title="Nose"
+                close={() => this.props.killProcess({ pid })}
+                children={ [null, null].map(file => (
+                  <FilePdfOutlined
+                    key={Math.random() * 100}
+                    className="window-files"
+                    style={{ fontSize: '500%' }}
+                  />
+                ))}
+              />
+            }
           });
         }
       },
       {
         top: 120,
         left: 20,
-        icon: <CodeFilled />,
+        widget: <CodeFilled />,
         name: 'terminal',
         open: async () => {
-          const pid = await this.createProcess();
+          const pid = await this.props.registerProcess();
 
-          await this.runProcess(pid, {
-            top: 20,
-            left: 150,
-            name: pid,
-            open: '',
-            icon: <SystemComponents.WindowComponent
-              title="terminal ~ me"
-              close={() => this.killProccess(pid)}
-              children={
-                <SystemComponents.TerminalComponent
-                  window
-                  configuration={{
-                    prompt: { backgroundColor: 'white', color: 'black' },
-                    result: { color: 'black' },
-                    promptInput: { backgroundColor: 'white', color: 'black' }
-                  }}
-                /> 
-              }
-            />
+          await this.props.registerConfigurationProcess({
+            pid: pid,
+            configuration: {
+              top: 20,
+              left: 150,
+              name: pid,
+              open: '',
+              widget: <SystemComponents.WindowComponent
+                title="terminal ~ me"
+                close={() => this.props.killProcess({ pid })}
+                children={
+                  <SystemComponents.TerminalComponent
+                    window
+                    configuration={{
+                      prompt: { backgroundColor: 'white', color: 'black' },
+                      result: { color: 'black' },
+                      promptInput: { backgroundColor: 'white', color: 'black' }
+                    }}
+                  /> 
+                }
+              />
+            }
           });
         }
       },
@@ -112,61 +118,20 @@ class System extends Component {
 
     // create process.
     for (let configuration of configurations) {
-      const pid = await this.createProcess();
-
-      await this.runProcess(pid, configuration);
+      const pid = await this.props.registerProcess();
+      await this.props.registerConfigurationProcess({ pid, configuration });
     }
-  }
-
-  async createProcess() {
-    const pid = createPID();
-
-    // registry process
-    await this.setState({
-      pids: { ...this.state.pids, [`${pid}`]: {} }
-    });
-
-    logger(`Porcess created - PID: ${pid}`);
-
-    return pid;
-  }
-
-  runProcess(pid, configurations) {
-    this.setState(({ pids }) => ({
-      pids: { ...pids, [`${pid}`]: configurations }
-    }));
-
-    logger(`PID: ${pid} is running on background`);
-  }
-
-  killProccess(pid) {
-    // remove explicit process
-    delete this.state.pids[`${pid}`];
-
-    this.setState({ pids: { ...this.state.pids }});
-
-    logger(`Porcess killed - PID: ${pid}`);
-  }
-
-  moveInterface(id, left, top) {
-    this.setState(({ pids }) => ({
-      pids: update(this.state.pids, {
-        [id]: {
-          $merge: { left, top },
-        },
-      })
-    }));
   }
 
   render() {
     return (
       <Layout style={{ backgroundColor: 'transparent' }}>
         <Layout.Content>
-          { !this.state.booting
+          { !this.props.isBooting
             ? <DndProvider backend={HTML5Backend}>
                 <SystemComponents.PIDsComponent
-                  pids={this.state.pids}
-                  moveInterface={this.moveInterface}
+                  pids={this.props.memory}
+                  moveInterface={this.props.updatePositionWidget}
                 />
               </DndProvider>
             : <SystemComponents.BootComponent />
@@ -177,4 +142,16 @@ class System extends Component {
   }
 }
 
-export default System;
+const mapStateProps = ({ system }) => ({ ...system });
+export default connect(
+  mapStateProps,
+  {
+    initBoot,
+    stopBoot,
+    registerProcess,
+    registerConfigurationProcess,
+    updatePositionWidget,
+    killProcess,
+    killAllProcess
+  }
+)(System);

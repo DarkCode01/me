@@ -24,7 +24,7 @@ export const PIDComponent = ({ pid, id, top, left }) => {
       onClick={pid.open}
     >
       <span className="icon-file-folder">
-        { pid.icon }
+        { pid.widget }
       </span>
     </div>
   );

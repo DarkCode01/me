@@ -7,11 +7,11 @@ export const PIDsComponent = ({ pids, moveInterface }) => {
     accept: 'PIDsComponent',
     drop(item, monitor) {
       const delta = monitor.getDifferenceFromInitialOffset();
-      moveInterface(
-        item.id,
-        Math.round(item.left + delta.x),
-        Math.round(item.top + delta.y)
-      );
+      moveInterface({
+        pid: item.id,
+        left: Math.round(item.left + delta.x),
+        top: Math.round(item.top + delta.y)
+      });
 
       return;
     }

@@ -70,3 +70,7 @@ export const logger = (info, type='log') => {
     console.log(`[${dayjs().format('ddd HH:mm A')}]: ${info}`);
   }
 }
+
+export const sleep = ms => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
