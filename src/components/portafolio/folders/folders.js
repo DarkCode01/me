@@ -2,7 +2,7 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 import { FolderOrFileComponent } from './folder';
 
-export const FoldersComponent = ({ folders, moveBox}) => {
+export const FoldersComponent = ({ folders, moveBox }) => {
   const [, drop] = useDrop({
     accept: 'FoldersComponent',
     drop(item, monitor) {

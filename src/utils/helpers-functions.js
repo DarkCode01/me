@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { v4 as PID } from 'uuid';
 import { executedCommand } from './command';
 
 const OPTIONS = /--[a-zA-Z]*/ // To get all options like --option
@@ -58,3 +59,5 @@ export const process = value => {
     _time: dayjs().format('ddd HH:mm A')
   }
 }
+
+export const createPID = () => PID();

@@ -1,29 +1,19 @@
 import React from 'react';
 import { Card } from 'antd';
-import { CloseCircleFilled, FilePdfOutlined } from '@ant-design/icons';
+import { CloseCircleFilled } from '@ant-design/icons';
 
-export const WindowComponent = ({ title, files }) => {
+export const WindowComponent = ({ title, children, close }) => {
   return (
     <Card
       className="window"
       title={ title || 'Me - Files'}
       extra={
         <CloseCircleFilled
-          onClick={event => {
-            event.preventDefault();
-
-            alert('close');
-          }}
+          onClick={close}
         />
       }
     >
-      { files.map(file => (
-        <FilePdfOutlined
-          key={Math.random() * 100}
-          className="window-files"
-          style={{ fontSize: '500%' }}
-        />
-      ))}
+      { children }
     </Card>
   );
 }
