@@ -15,56 +15,37 @@ class Portafolio extends Component {
     super();
 
     this.state = {
-      pids: {
-        terminal: { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' },
-        folder: {
-          top: 20,
-          left: 20,
-          icon: <FolderFilled />,
-          name: 'Me - Files',
-          open: this.openWindowManageFiles.bind(this)({ title: 'no', files: [null, null]})
-        }
-      }
+      pids: { }
     }
 
     this.moveBox = this.moveBox.bind(this);
-    this.createPID = this.createPID.bind(this);
+    this.createProcess = this.createProcess.bind(this);
+    this.runProcess = this.runProcess.bind(this);
     this.killProccess = this.killProccess.bind(this);
   }
 
-  componentDidMount() {
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center center';
-    document.body.style.backgroundImage = 'url(darkcoder.jpg)';
-  }
+  async componentDidMount() {
+    // executable of terminal and folder of files
+    const configurations = [
+      {
+        top: 20,
+        left: 20,
+        icon: <FolderFilled />,
+        name: 'Me - Files',
+        open: () => {
+          const pid = this.createProcess();
 
-  createPID() {
-    const pid = createPID();
-
-    // registry process
-    this.setState({ pids: { ...this.state.pids, [`${pid}`]: {} } });
-
-    return pid;
-  }
-
-  openWindowManageFiles({ files, title }) {
-    return () => {
-      const pid = this.createPID();
-
-      this.setState(({ pids }) => ({
-        pids: {
-          ...pids,
-          [`${pid}`]: {
+          this.runProcess(pid, {
             top: 20,
             left: 150,
             name: pid,
             open: '',
             icon: <PortafolioComponent.WindowComponent
-              title={title}
+              title="Nose"
               close={() => {
                 this.killProccess(pid);
               }}
-              children={ files.map(file => (
+              children={ [null, null].map(file => (
                 <FilePdfOutlined
                   key={Math.random() * 100}
                   className="window-files"
@@ -72,11 +53,74 @@ class Portafolio extends Component {
                 />
               ))}
             />
-          }
+          });
         }
-      }));
+      },
+      { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' },
+    ];
+
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center center';
+    document.body.style.backgroundImage = 'url(darkcoder.jpg)';
+
+    // create process.
+    for (let configuration of configurations) {
+      const pid = await this.createProcess();
+
+      await this.runProcess(pid, configuration);
     }
   }
+
+  async createProcess() {
+    const pid = createPID();
+
+    // registry process
+    await this.setState({
+      pids: {
+        ...this.state.pids,
+        [`${pid}`]: {}
+      }
+    });
+
+    return pid;
+  }
+
+  runProcess(pid, configurations) {
+    this.setState(({ pids }) => ({
+      pids: { ...pids, [`${pid}`]: configurations }
+    }));
+  }
+
+  // openWindowManageFiles({ files, title }) {
+  //   return () => {
+  //     const pid = this.createPID();
+
+  //     this.setState(({ pids }) => ({
+  //       pids: {
+  //         ...pids,
+  //         [`${pid}`]: {
+  //           top: 20,
+  //           left: 150,
+  //           name: pid,
+  //           open: '',
+  //           icon: <PortafolioComponent.WindowComponent
+  //             title={title}
+  //             close={() => {
+  //               this.killProccess(pid);
+  //             }}
+  //             children={ files.map(file => (
+  //               <FilePdfOutlined
+  //                 key={Math.random() * 100}
+  //                 className="window-files"
+  //                 style={{ fontSize: '500%' }}
+  //               />
+  //             ))}
+  //           />
+  //         }
+  //       }
+  //     }));
+  //   }
+  // }
 
   killProccess(pid) {
     // remove explicit process
