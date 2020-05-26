@@ -55,7 +55,7 @@ class System extends Component {
         top: 20,
         left: 20,
         widget: <FolderFilled />,
-        name: 'Me - Files',
+        name: 'folder',
         open: async () => {
           const pid = await this.props.registerProcess();
 
@@ -108,11 +108,24 @@ class System extends Component {
           });
         }
       },
+      {
+        top: window.screen.height / 3,
+        left: window.screen.width / 2,
+        name: 'welcome',
+        open: '',
+        widget: <SystemComponents.WindowComponent
+          title="Welcome User"
+          close={() => this.props.killProcess({ pid: 'welcome' })}
+          width="auto"
+          height="auto"
+          children={ <SystemComponents.WelcomeComponent /> }
+        />
+      }
     ];
 
     // create process.
     for (let configuration of configurations) {
-      const pid = await this.props.registerProcess();
+      const pid = await this.props.registerProcess(configuration.name);
       await this.props.registerConfigurationProcess({ pid, configuration });
     }
   }

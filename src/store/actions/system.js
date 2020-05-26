@@ -20,8 +20,8 @@ export const stopBoot = () => async dispatch => {
   logger('Finished boot system ✅');
 }
 
-export const registerProcess = () => async dispatch => {
-  const pid = createPID();
+export const registerProcess = name => async dispatch => {
+  const pid = name || createPID();
 
   await dispatch({
     type: SYSTEM_TYPES.REGISTER_PROCESS_PID,

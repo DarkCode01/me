@@ -1,1 +1,4 @@
-export { BootComponent } from './boot';
+import { BootComponent } from './boot';
+import { WelcomeComponent } from './welcome';
+
+export { WelcomeComponent, BootComponent }
