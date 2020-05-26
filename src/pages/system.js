@@ -6,11 +6,11 @@ import { createPID } from '../utils/helpers-functions';
 import { Layout } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { Portafolio as PortafolioComponent } from '../components';
+import { SystemComponents } from '../components';
 import { FolderFilled, CodeFilled, FilePdfOutlined } from '@ant-design/icons';
 
 
-class Portafolio extends Component {
+class System extends Component {
   constructor() {
     super();
 
@@ -40,7 +40,7 @@ class Portafolio extends Component {
             left: 150,
             name: pid,
             open: '',
-            icon: <PortafolioComponent.WindowComponent
+            icon: <SystemComponents.WindowComponent
               title="Nose"
               close={() => {
                 this.killProccess(pid);
@@ -113,7 +113,7 @@ class Portafolio extends Component {
       <Layout style={{ backgroundColor: 'transparent' }}>
         <Layout.Content>
           <DndProvider backend={HTML5Backend}>
-            <PortafolioComponent.PIDsComponent
+            <SystemComponents.PIDsComponent
               pids={this.state.pids}
               moveInterface={this.moveInterface}
             />
@@ -124,4 +124,4 @@ class Portafolio extends Component {
   }
 }
 
-export default Portafolio;
+export default System;

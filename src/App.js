@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   Home,
   Terminal,
-  Portafolio
+  System
 } from './pages';
 
 // Styles css
@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route excat path="/terminal" component={Terminal} />
 
-          <Route excat path="/gui" component={Portafolio} />
+          <Route excat path="/system" component={System} />
         </Switch>
       </Router>
     </div>

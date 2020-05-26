@@ -45,7 +45,7 @@ export const Home = () => {
             icon={<HomeOutlined />}
             style={{ border: 0 }}
           >
-            <Link to="/gui" style={{ marginLeft: 5, color: 'black' }}>
+            <Link to="/system" style={{ marginLeft: 5, color: 'black' }}>
               GUI
             </Link>
           </Button>  
