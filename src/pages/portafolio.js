@@ -32,10 +32,10 @@ class Portafolio extends Component {
         left: 20,
         icon: <FolderFilled />,
         name: 'Me - Files',
-        open: () => {
-          const pid = this.createProcess();
+        open: async () => {
+          const pid = await this.createProcess();
 
-          this.runProcess(pid, {
+          await this.runProcess(pid, {
             top: 20,
             left: 150,
             name: pid,
@@ -90,37 +90,6 @@ class Portafolio extends Component {
       pids: { ...pids, [`${pid}`]: configurations }
     }));
   }
-
-  // openWindowManageFiles({ files, title }) {
-  //   return () => {
-  //     const pid = this.createPID();
-
-  //     this.setState(({ pids }) => ({
-  //       pids: {
-  //         ...pids,
-  //         [`${pid}`]: {
-  //           top: 20,
-  //           left: 150,
-  //           name: pid,
-  //           open: '',
-  //           icon: <PortafolioComponent.WindowComponent
-  //             title={title}
-  //             close={() => {
-  //               this.killProccess(pid);
-  //             }}
-  //             children={ files.map(file => (
-  //               <FilePdfOutlined
-  //                 key={Math.random() * 100}
-  //                 className="window-files"
-  //                 style={{ fontSize: '500%' }}
-  //               />
-  //             ))}
-  //           />
-  //         }
-  //       }
-  //     }));
-  //   }
-  // }
 
   killProccess(pid) {
     // remove explicit process
