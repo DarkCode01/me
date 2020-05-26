@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { v4 as PID } from 'uuid';
-import { executedCommand } from './command';
+import { INFORMATION, executedCommand } from './command';
 
 const OPTIONS = /--[a-zA-Z]*/ // To get all options like --option
 
@@ -74,3 +74,9 @@ export const logger = (info, type='log') => {
 export const sleep = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export const mocksFiles = [
+  { name: 'Github', open: () => executedCommand({ command: 'open', params: INFORMATION.github }) },
+  { name: 'Linkedin', open: () => executedCommand({ command: 'open', params: INFORMATION.linkedin }) },
+  { name: 'CV', open: () => executedCommand({ command: 'open', params: INFORMATION.cv }) }
+];

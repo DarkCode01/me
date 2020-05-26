@@ -1,4 +1,4 @@
-const INFORMATION = {
+export const INFORMATION = {
   github: process.env.REACT_APP_GITHUB_URL,
   linkedin: process.env.REACT_APP_LINKEDIN_URL,
   cv: process.env.REACT_APP_CV_URL,

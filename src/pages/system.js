@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logger } from '../utils/helpers-functions';
+import { logger, mocksFiles } from '../utils/helpers-functions';
 import {
   initBoot,
   stopBoot,
@@ -15,7 +15,7 @@ import { Layout } from 'antd';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { SystemComponents } from '../components';
-import { FolderFilled, CodeFilled, FilePdfOutlined } from '@ant-design/icons';
+import { FolderFilled, CodeFilled } from '@ant-design/icons';
 
 
 class System extends Component {
@@ -67,15 +67,9 @@ class System extends Component {
               name: pid,
               open: '',
               widget: <SystemComponents.WindowComponent
-                title="Nose"
+                title="Files Manager"
                 close={() => this.props.killProcess({ pid })}
-                children={ [null, null].map(file => (
-                  <FilePdfOutlined
-                    key={Math.random() * 100}
-                    className="window-files"
-                    style={{ fontSize: '500%' }}
-                  />
-                ))}
+                children={ <SystemComponents.ManagerComponent files={mocksFiles} /> }
               />
             }
           });
