@@ -1,25 +1,44 @@
 import React, { useState, useRef, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
-import { parserPipe } from '../utils/helpers-functions';
+import { parserPipe } from '../../../utils/helpers-functions';
 
 
-export const Terminal = () => {
+export const TerminalComponent = ({ window, configuration }) => {
   const reference = useRef(null);
+  const refHistory = useRef(null);
   const [back, setBack] = useState(0);
-  const [history, setHistory] = useState([ parserPipe('welcome') ]);
+  const [history, setHistory] = useState([ parserPipe('welcome'), parserPipe('help') ]);
+  const styleHistory = !window ? { } : {
+    overflowY: 'hidden',
+    maxHeight: '65vh'
+  }
+  configuration = configuration || {
+    prompt: { },
+    promptInput: { },
+    result: { }
+  }
   
   // To scroll button
   useEffect(() => {
-    reference.current.scrollIntoView({
-      behavior: 'smooth',  block: 'end', inline: 'end'
-    });
+    if (window) {
+      refHistory.current.scrollIntoView({
+        behavior: 'smooth',  block: 'end', inline: 'end'
+      });
+    } else {
+      reference.current.scrollIntoView({
+        behavior: 'smooth',  block: 'end', inline: 'end'
+      });
+    }
   });
 
   return (
     <div className="terminal-window" style={{ whiteSpace: 'pre-wrap' }}>
-      <span className="terminal-prompt">
-        <div>
+      <span className="terminal-prompt" style={ configuration.prompt } >
+        <div
+          className="terminal-prompt-history"
+          style={ styleHistory }
+        >
           { history.map(({ command, data, _time }) => (
             <span key={ uuid() }>
               <b>jm@segura.polanco - / ➜ &#8287; { command } </b>
@@ -27,10 +46,11 @@ export const Terminal = () => {
                 { _time }
               </strong>
               <p>
-                <b style={{ color: 'white' }}>{ data }</b>
+                <b style={{ color: 'white', ...configuration.result  }}>{ data }</b>
               </p>
             </span>
           ))}
+          <span ref={refHistory}></span>
         </div>
 
         {/* Prompt of terminal */}
@@ -38,6 +58,7 @@ export const Terminal = () => {
         <input
           ref={reference}
           type="text"
+          style={ configuration.promptInput }
           onKeyDown={event => {
             const value = event.target.value;
             let result = [];

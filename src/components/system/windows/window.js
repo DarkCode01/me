@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { CloseCircleFilled } from '@ant-design/icons';
 
-export const WindowComponent = ({ title, children, close }) => {
+export const WindowComponent = ({ title, children, close, configuration }) => {
   return (
     <Card
       className="window"
@@ -12,8 +12,11 @@ export const WindowComponent = ({ title, children, close }) => {
           onClick={close}
         />
       }
+      bodyStyle={ configuration }
     >
-      { children }
+      <div style={{ overflowY: 'auto', height: '100%' }}>
+        { children }
+      </div>
     </Card>
   );
 }

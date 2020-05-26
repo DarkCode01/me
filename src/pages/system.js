@@ -28,7 +28,6 @@ class System extends Component {
 
   componentDidMount() {
     logger('Init boot process');
-    document.body.style.backgroundColor = 'rgb(14, 14, 14)';
 
     setTimeout(async () => {
       await this.setState({ booting: false });
@@ -67,9 +66,7 @@ class System extends Component {
             open: '',
             icon: <SystemComponents.WindowComponent
               title="Nose"
-              close={() => {
-                this.killProccess(pid);
-              }}
+              close={() => this.killProccess(pid)}
               children={ [null, null].map(file => (
                 <FilePdfOutlined
                   key={Math.random() * 100}
@@ -81,7 +78,36 @@ class System extends Component {
           });
         }
       },
-      { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' },
+      {
+        top: 120,
+        left: 20,
+        icon: <CodeFilled />,
+        name: 'terminal',
+        open: async () => {
+          const pid = await this.createProcess();
+
+          await this.runProcess(pid, {
+            top: 20,
+            left: 150,
+            name: pid,
+            open: '',
+            icon: <SystemComponents.WindowComponent
+              title="terminal ~ me"
+              close={() => this.killProccess(pid)}
+              children={
+                <SystemComponents.TerminalComponent
+                  window
+                  configuration={{
+                    prompt: { backgroundColor: 'white', color: 'black' },
+                    result: { color: 'black' },
+                    promptInput: { backgroundColor: 'white', color: 'black' }
+                  }}
+                /> 
+              }
+            />
+          });
+        }
+      },
     ];
 
     // create process.
