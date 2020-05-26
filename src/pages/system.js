@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
-import { createPID } from '../utils/helpers-functions';
+import { createPID, logger } from '../utils/helpers-functions';
 
 
 import { Layout } from 'antd';
@@ -59,9 +59,11 @@ class System extends Component {
       { top: 120, left: 20, icon: <CodeFilled />, name: 'terminal', open: '' },
     ];
 
+    logger('Loading fonts and background images...');
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundPosition = 'center center';
     document.body.style.backgroundImage = 'url(darkcoder.jpg)';
+    logger('Loaded ✅');
 
     // create process.
     for (let configuration of configurations) {
@@ -76,11 +78,10 @@ class System extends Component {
 
     // registry process
     await this.setState({
-      pids: {
-        ...this.state.pids,
-        [`${pid}`]: {}
-      }
+      pids: { ...this.state.pids, [`${pid}`]: {} }
     });
+
+    logger(`Porcess created - PID: ${pid}`);
 
     return pid;
   }
@@ -89,6 +90,8 @@ class System extends Component {
     this.setState(({ pids }) => ({
       pids: { ...pids, [`${pid}`]: configurations }
     }));
+
+    logger(`PID: ${pid} is running on background`);
   }
 
   killProccess(pid) {
@@ -96,6 +99,8 @@ class System extends Component {
     delete this.state.pids[`${pid}`];
 
     this.setState({ pids: { ...this.state.pids }});
+
+    logger(`Porcess killed - PID: ${pid}`);
   }
 
   moveInterface(id, left, top) {

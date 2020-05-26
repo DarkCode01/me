@@ -61,3 +61,12 @@ export const process = value => {
 }
 
 export const createPID = () => PID();
+
+export const logger = (info, type='log') => {
+  try {
+    console[type](`[${dayjs().format('ddd HH:mm A')}]: ${info}`);
+  } catch(err) {
+    console.error(`[${dayjs().format('ddd HH:mm A')}]: Type: {type} not exixts as color.`);
+    console.log(`[${dayjs().format('ddd HH:mm A')}]: ${info}`);
+  }
+}
