@@ -5,8 +5,8 @@ export const WelcomeComponent = () => {
   return (
     <Result
       status="success"
-      title="Welcome to meOS!"
-      subTitle="This is a simple personal website of me(José Segura) enjoy it!"
+      title={<strong style={{ color: 'white' }}>Welcome to meOS!</strong>}
+      subTitle={<span style={{ color: 'white' }}>This is a simple personal website of me(José Segura) enjoy it!</span>}
     />
   )
 }

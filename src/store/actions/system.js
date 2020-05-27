@@ -41,6 +41,13 @@ export const registerConfigurationProcess = ({ pid, configuration }) => async di
   logger(`PID: ${pid} is running on background`);
 }
 
+export const updateCacheProcess = ({ pid, data }) => async dispatch => {
+  await dispatch({
+    type: SYSTEM_TYPES.UPDATE_CACHE_PROCESS_PID,
+    payload: { pid, data }
+  });
+}
+
 export const updatePositionWidget = ({ pid, top, left }) => async dispatch => {
   await dispatch({
     type: SYSTEM_TYPES.UPDATE_PROCESS_PID,

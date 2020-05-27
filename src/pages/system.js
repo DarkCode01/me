@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logger, mocksFiles } from '../utils/helpers-functions';
+import { storage } from '../services/storage';
+import { logger } from '../utils/helpers-functions';
 import {
   initBoot,
   stopBoot,
@@ -69,7 +70,7 @@ class System extends Component {
               widget: <SystemComponents.WindowComponent
                 title="Files Manager"
                 close={() => this.props.killProcess({ pid })}
-                children={ <SystemComponents.ManagerComponent files={mocksFiles} /> }
+                children={ <SystemComponents.ManagerComponent files={storage['/']} /> }
               />
             }
           });
@@ -96,11 +97,7 @@ class System extends Component {
                 children={
                   <SystemComponents.TerminalComponent
                     window
-                    configuration={{
-                      prompt: { backgroundColor: 'white', color: 'black' },
-                      result: { color: 'black' },
-                      promptInput: { backgroundColor: 'white', color: 'black' }
-                    }}
+                    pid={pid}
                   /> 
                 }
               />

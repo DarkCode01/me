@@ -4,7 +4,7 @@ import { Layout, Row } from 'antd';
 
 export const ManagerComponent = ({ files }) => {
   return (
-    <Layout style={{ background: 'white' }}>
+    <Layout style={{ background: 'rgb(14, 14, 14)' }}>
       <Row>
         { files.map(file => (
           <FileComponent file={file} key={Math.random() * 100} />
