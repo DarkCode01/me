@@ -58,7 +58,7 @@ export const Home = () => {
             icon={<CodeOutlined />}
             style={{ background: '#237804', border: 0 }}
           >
-            <Link to="/terminal" style={{ marginLeft: 5, color: 'white' }}>
+            <Link to="/tty" style={{ marginLeft: 5, color: 'white' }}>
               whoami!
             </Link>
           </Button>

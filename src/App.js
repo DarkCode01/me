@@ -24,7 +24,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route excat path="/terminal" component={Terminal} />
+            <Route excat path="/tty" component={Terminal} />
             <Route excat path="/system" component={System} />
           </Switch>
         </Router>
