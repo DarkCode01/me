@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Pages & Components
-import {
-  Home,
-  Terminal,
-  Portafolio
-} from './pages';
+import ErrorBoundary from './components/error';
+import { Home, Terminal, System } from './pages';
 
 // Styles css
 import 'antd/dist/antd.css';
@@ -15,16 +12,23 @@ import './styles/App.css';
 
 
 function App() {
+  useEffect(() => {
+    document.body.style.backgroundColor = 'rgb(14, 14, 14)';
+
+    window.addEventListener("beforeunload", () => alert('ss'));
+  });
+
   return (
     <div>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route excat path="/terminal" component={Terminal} />
-
-          <Route excat path="/whoami" component={Portafolio} />
-        </Switch>
-      </Router>
+      <ErrorBoundary>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route excat path="/tty" component={Terminal} />
+            <Route excat path="/system" component={System} />
+          </Switch>
+        </Router>
+      </ErrorBoundary>
     </div>
   );
 }

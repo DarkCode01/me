@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { v4 as PID } from 'uuid';
 import { executedCommand } from './command';
 
 const OPTIONS = /--[a-zA-Z]*/ // To get all options like --option
@@ -57,4 +58,19 @@ export const process = value => {
     data: executedCommand({ command, options, params }),
     _time: dayjs().format('ddd HH:mm A')
   }
+}
+
+export const createPID = () => PID();
+
+export const logger = (info, type='log') => {
+  try {
+    console[type](`[${dayjs().format('ddd HH:mm A')}]: ${info}`);
+  } catch(err) {
+    console.error(`[${dayjs().format('ddd HH:mm A')}]: Type: {type} not exixts as color.`);
+    console.log(`[${dayjs().format('ddd HH:mm A')}]: ${info}`);
+  }
+}
+
+export const sleep = ms => {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

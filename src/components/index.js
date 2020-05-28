@@ -1,12 +1,5 @@
 import { Home } from './home';
-import { Terminal } from './terminal';
-import { CommingSoon } from './commingSoon';
+import { SystemComponents } from './system';
+import { ActionMenu } from './actions';
 
-import { Portafolio } from './portafolio';
-
-export {
-  Home,
-  Terminal,
-  CommingSoon,
-  Portafolio
-}
+export { Home, SystemComponents, ActionMenu }

@@ -1,9 +1,5 @@
 import Home from './home';
 import Terminal from './terminal';
-import Portafolio from './portafolio';
+import System from './system';
 
-export {
-  Home,
-  Terminal,
-  Portafolio
-}
+export { Home, Terminal, System }

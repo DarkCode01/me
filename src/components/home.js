@@ -3,8 +3,8 @@ import shuffle from 'lodash/shuffle'
 import { PREFIXES} from '../utils/helpers-functions';
 
 import ReactTypingEffect from 'react-typing-effect';
-import { Button } from 'antd';
-import { CodeOutlined } from '@ant-design/icons';
+import { Button, Row, Col } from 'antd';
+import { CodeOutlined, HomeOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 
@@ -36,17 +36,34 @@ export const Home = () => {
           </code>
         </a>
       </p>
-      <Button
-          type="primary"
-          shape="round"
-          size="large"
-          icon={<CodeOutlined />}
-          style={{ background: '#237804', border: 0 }}
-        >
-          <Link to="/terminal" style={{ marginLeft: 5, color: 'white' }}>
-            whoami!
-          </Link>
-        </Button>
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Col className="gutter-row" span={11}>
+          <Button
+            type="info"
+            shape="round"
+            size="large"
+            icon={<HomeOutlined />}
+            style={{ border: 0 }}
+          >
+            <Link to="/system" style={{ marginLeft: 5, color: 'black' }}>
+              GUI
+            </Link>
+          </Button>  
+        </Col>
+        <Col className="gutter-row" span={11}>
+          <Button
+            type="primary"
+            shape="round"
+            size="large"
+            icon={<CodeOutlined />}
+            style={{ background: '#237804', border: 0 }}
+          >
+            <Link to="/tty" style={{ marginLeft: 5, color: 'white' }}>
+              whoami!
+            </Link>
+          </Button>
+        </Col>
+      </Row>
     </header>
   );
 }
